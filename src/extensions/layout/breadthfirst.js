@@ -48,8 +48,9 @@ BreadthFirstLayout.prototype.run = function(){
   const maximal = options.acyclic || options.maximal || options.maximalAdjustments > 0; // maximalAdjustments for compat. w/ old code; also, setting acyclic to true sets maximal to true
 
   const hasBoundingBox = !!options.boundingBox;
+  const cyPan = cy.pan();
   const bb = math.makeBoundingBox( hasBoundingBox ? options.boundingBox : {
-    x1: 0, y1: 0, w: cy.width(), h: cy.height()
+    x1: -cyPan.x, y1: -cyPan.y, w: cy.width(), h: cy.height()
   } );
 
   let roots;
